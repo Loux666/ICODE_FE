@@ -1,0 +1,74 @@
+<div class="otp-container">
+  <div class="otp-content">
+    <!-- Back arrow -->
+    <div class="back-arrow" @click="goBack">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M15 18L9 12L15 6" stroke="#333" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </div>
+
+    <!-- Title -->
+    <h1 class="title">Xác thực tài khoản</h1>
+
+    <!-- Subtitle -->
+    <h2 class="subtitle">Nhập mã OTP</h2>
+
+    <!-- Description -->
+    <p class="description">
+      Chúng tôi đã gửi mã xác thực 6 chữ số đến địa chỉ email <strong>{{ email }}</strong>
+    </p>
+
+    <!-- OTP Input Boxes inside a form so Enter submits -->
+    <form class="otp-form" @submit.prevent="verifyOtp">
+      <div class="otp-inputs">
+        <input
+          v-for="(digit, index) in otpDigits"
+          :key="index"
+          :ref="el => setInputRef(el, index)"
+          type="text"
+          inputmode="numeric"
+          maxlength="1"
+          class="otp-input"
+          v-model="otpDigits[index]"
+          @input="handleInput(index, $event)"
+          @keydown="handleKeyDown(index, $event)"
+          @paste="handlePaste($event)"
+        />
+      </div>
+
+    <!-- Resend Code -->
+    <div class="resend-section">
+      <span class="resend-text">Không nhận được mã?</span>
+      <button 
+        v-if="countdown > 0" 
+        class="resend-button disabled" 
+        disabled
+      >
+        Gửi lại sau {{ countdown }}s
+      </button>
+      <button 
+        v-else 
+        class="resend-button active" 
+        @click="resendCode"
+      >
+        Gửi lại mã
+      </button>
+    </div>
+
+      <!-- Error message -->
+      <div v-if="errorMessage" class="otp-error">{{ errorMessage }}</div>
+      <div v-if="successMessage" class="otp-success">{{ successMessage }}</div>
+
+      <!-- Confirm Button -->
+      <button 
+        class="confirm-button" 
+        :class="{ disabled: !isOtpComplete || loading }"
+        type="submit"
+        :disabled="!isOtpComplete || loading"
+      >
+        <span v-if="!loading">Xác nhận</span>
+        <span v-else>Đang xác nhận...</span>
+      </button>
+    </form>
+  </div>
+</div>

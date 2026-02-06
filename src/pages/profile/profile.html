@@ -1,0 +1,85 @@
+<div class="profile-page">
+  <div v-if="isLoading" class="loading-container">
+    <div class="spinner"></div>
+    <p>Đang tải thông tin...</p>
+  </div>
+
+  <div v-else class="profile-container">
+    <div class="profile-header">
+      <div class="avatar-wrapper" @click="triggerFileInput">
+        <img :src="avatarUrl" alt="avatar" class="profile-avatar" />
+        <div class="avatar-overlay">
+          <i class="icon-camera">📷</i>
+        </div>
+        <input type="file" ref="fileInput" @change="onAvatarChange" accept="image/*" style="display: none" />
+      </div>
+      <div class="profile-meta">
+        <h2>{{ fullName }}</h2>
+        <p class="profile-email">{{ userEmail }}</p>
+        <span class="role-badge" :class="`role-${userRole}`">{{ userRole }}</span>
+      </div>
+    </div>
+
+    <div class="profile-body">
+      <section class="profile-section">
+        <h3>Thông tin cơ bản</h3>
+        <div class="field-row">
+          <label>Họ và tên</label>
+          <input type="text" v-model="editName" class="edit-input" placeholder="Nhập họ tên..." />
+        </div>
+        <div class="field-row">
+          <label>Email</label>
+          <div class="email-display">
+            <span>{{ userEmail }}</span>
+            <button class="btn-text" @click="handleUpdateEmail">Cập nhật</button>
+          </div>
+        </div>
+        <div class="field-row">
+          <label>Vai trò</label>
+          <div>
+            <span class="role-badge" :class="`role-${userRole}`">{{ userRole }}</span>
+          </div>
+        </div>
+        <div class="field-row">
+          <label>Ngày tạo tài khoản</label>
+          <div>{{ createdAt }}</div>
+        </div>
+
+        <div class="action-footer">
+          <button class="btn-save" @click="handleSaveProfile" :disabled="isSaving">
+            {{ isSaving ? 'Đang lưu...' : 'Lưu' }}
+          </button>
+        </div>
+      </section>
+
+      <section class="profile-section">
+        <h3>Trạng thái tài khoản</h3>
+        <div class="field-row">
+          <label>Kích hoạt tài khoản</label>
+          <div>
+            <span class="status-badge" :class="isActivated ? 'status-active' : 'status-inactive'">
+              {{ isActivated ? 'Đã kích hoạt' : 'Chưa kích hoạt' }}
+            </span>
+          </div>
+        </div>
+        <div class="field-row">
+          <label>Xác thực Email</label>
+          <div>
+            <span class="status-badge" :class="isEmailVerified ? 'status-verified' : 'status-unverified'">
+              {{ isEmailVerified ? 'Đã xác thực' : 'Chưa xác thực' }}
+            </span>
+          </div>
+        </div>
+      </section>
+
+      <section class="profile-section">
+        <h3>Bảo mật</h3>
+        <div class="field-row">
+          <label>Đổi mật khẩu</label>
+          <button class="btn-text" @click="goToChangePassword" style="background: #f1f5f9; color: #475569">Thay
+            đổi</button>
+        </div>
+      </section>
+    </div>
+  </div>
+</div>
