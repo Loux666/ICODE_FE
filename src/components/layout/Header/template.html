@@ -70,9 +70,10 @@
 <div class="category-bar">
   <div class="category-container">
     
+    <!-- Bán chạy - Ghim mặc định -->
     <div class="category-item featured">
       <span class="category-name">
-        <span class="sale-badge">SALE</span>
+        <span class="sale-badge">HOT</span>
         Bán chạy
       </span>
       <div class="category-dropdown">
@@ -84,108 +85,26 @@
         </div>
       </div>
     </div>
-    <div class="category-item">
-      <span class="category-name">Tết Collection</span>
-      <div class="category-dropdown">
-        <div class="dropdown-content">
-          <a href="#" class="sub-category">Áo dài truyền thống</a>
-          <a href="#" class="sub-category">Áo dài cách tân</a>
-          <a href="#" class="sub-category">Set gia đình</a>
-          <a href="#" class="sub-category">Phụ kiện Tết</a>
-        </div>
-      </div>
+
+    <!-- Collections -->
+    <div v-for="collection in collections" :key="collection.id" class="category-item">
+      <span class="category-name">{{ collection.name }}</span>
     </div>
 
-    <div class="category-item">
-      <span class="category-name">Thời trang nam</span>
+    <!-- Audiences with Categories -->
+    <div v-for="audience in audiences" :key="audience.id" class="category-item">
+      <span class="category-name">{{ audience.label }}</span>
       <div class="category-dropdown">
         <div class="dropdown-content">
-          <div class="sub-group">
-            <h4>Áo</h4>
-            <a href="#" class="sub-category">Áo sơ mi</a>
-            <a href="#" class="sub-category">Áo phông</a>
-            <a href="#" class="sub-category">Áo polo</a>
-            <a href="#" class="sub-category">Áo khoác</a>
-          </div>
-          <div class="sub-group">
-            <h4>Quần</h4>
-            <a href="#" class="sub-category">Quần jean</a>
-            <a href="#" class="sub-category">Quần tây</a>
-            <a href="#" class="sub-category">Quần short</a>
-          </div>
-          <div class="sub-group">
-            <h4>Phụ kiện</h4>
-            <a href="#" class="sub-category">Giày dép</a>
-            <a href="#" class="sub-category">Túi xách</a>
-            <a href="#" class="sub-category">Mũ nón</a>
+          <div v-for="category in audience.categories" :key="category.id" class="sub-group">
+            <h4>{{ category.name }}</h4>
+            <a v-for="child in category.children" :key="child.id" :href="`/category/${child.slug}`" class="sub-category">
+              {{ child.name }}
+            </a>
           </div>
         </div>
       </div>
     </div>
-
-    <div class="category-item">
-      <span class="category-name">Thời trang nữ</span>
-      <div class="category-dropdown">
-        <div class="dropdown-content">
-          <div class="sub-group">
-            <h4>Áo</h4>
-            <a href="#" class="sub-category">Áo phông</a>
-            <a href="#" class="sub-category">Áo sơ mi</a>
-            <a href="#" class="sub-category">Áo chống nắng</a>
-            <a href="#" class="sub-category">Áo polo</a>
-          </div>
-          <div class="sub-group">
-            <h4>Quần</h4>
-            <a href="#" class="sub-category">Quần jean</a>
-            <a href="#" class="sub-category">Quần ống rộng</a>
-            <a href="#" class="sub-category">Quần vải</a>
-            <a href="#" class="sub-category">Chân váy</a>
-          </div>
-          <div class="sub-group">
-            <h4>Đồ lót</h4>
-            <a href="#" class="sub-category">Áo lót</a>
-            <a href="#" class="sub-category">Quần lót</a>
-          </div>
-          <div class="sub-group">
-            <h4>Phụ kiện</h4>
-            <a href="#" class="sub-category">Găng tay</a>
-            <a href="#" class="sub-category">Mũ</a>
-          </div>
-          <div class="sub-group">
-            <h4>Giày dép</h4>
-            <a href="#" class="sub-category">Giày thể thao</a>
-            <a href="#" class="sub-category">Sandals và guốc</a>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="category-item">
-      <span class="category-name">Thời trang cho bé</span>
-      <div class="category-dropdown">
-        <div class="dropdown-content">
-          <a href="#" class="sub-category">Bé trai (2-10 tuổi)</a>
-          <a href="#" class="sub-category">Bé gái (2-10 tuổi)</a>
-          <a href="#" class="sub-category">Sơ sinh (0-2 tuổi)</a>
-          <a href="#" class="sub-category">Phụ kiện trẻ em</a>
-        </div>
-      </div>
-    </div>
-
-    <div class="category-item">
-      <span class="category-name">Phụ kiện</span>
-      <div class="category-dropdown">
-        <div class="dropdown-content">
-          <a href="#" class="sub-category">Túi xách</a>
-          <a href="#" class="sub-category">Giày dép</a>
-          <a href="#" class="sub-category">Mũ nón</a>
-          <a href="#" class="sub-category">Trang sức</a>
-          <a href="#" class="sub-category">Khăn choàng</a>
-        </div>
-      </div>
-    </div>
-
-    
 
   </div>
 </div>

@@ -1,8 +1,9 @@
+* {
+  box-sizing: border-box;
+}
+
 html {
-  transform: scale(0.75);
-  transform-origin: top left;
-  width: 133.33vw;
-  height: 133.33vh;
+  overflow-x: hidden;
 }
 
 body {

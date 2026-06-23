@@ -9,13 +9,15 @@
 </script>
 
 <template>
-  <div class="layout">
-    <Header  />
+  <div>
+    <Header />
     
-    <main class="main-content">
-      <slot />
-    </main>
-    <Footer />
+    <div class="layout">
+      <main class="main-content">
+        <slot />
+      </main>
+      <Footer />
+    </div>
   </div>
 </template>
 
@@ -27,19 +29,24 @@
     display: flex;
     flex-direction: column;
     width: 100%;
-
     font-family: 'Montserrat', sans-serif;  
-    font-size: 20px;
-    
-    
+    font-size: 15px;
   }
 
   .main-content {
     flex: 1;
-    margin-top: 118px;
+    margin-top: 49px;
   }
 
   @media (max-width: 768px) {
-    
+    .main-content {
+      margin-top: 45px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .main-content {
+      margin-top: 42px;
+    }
   }
 </style>

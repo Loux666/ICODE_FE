@@ -59,4 +59,9 @@ apiClient.interceptors.response.use(
   }
 );
 
+// API endpoints
+export const headerApi = {
+  getHeader: () => apiClient.get('/header'),
+};
+
 export default apiClient;

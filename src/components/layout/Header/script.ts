@@ -2,12 +2,48 @@ import { defineComponent, ref, onMounted, onUnmounted, computed } from 'vue';
 import { useRouter } from 'vue-router'; // 1. Import
 import { useAuthStore } from '@/store/auth';
 import { getAvatarUrl } from '@/utils/media';
+import api, { headerApi } from '@/services/api';
+
+interface ChildCategory {
+  id: number;
+  name: string;
+  slug: string;
+}
+
+interface ParentCategory {
+  id: number;
+  name: string;
+  slug: string;
+  children: ChildCategory[];
+}
+
+interface Audience {
+  id: number;
+  name: string;
+  label: string;
+  categories: ParentCategory[];
+}
+
+interface Collection {
+  id: number;
+  name: string;
+  slug: string;
+}
+
+interface HeaderData {
+  collections: Collection[];
+  audiences: Audience[];
+}
 
 export default defineComponent({
   emits: ['toggle-sidebar'],
   setup() {
     // 2. Khởi tạo router instance (QUAN TRỌNG)
-    const router = useRouter(); 
+    const router = useRouter();
+    
+    // Header data from API
+    const collections = ref<Collection[]>([]);
+    const audiences = ref<Audience[]>([]);
 
     // Logic scroll giữ nguyên
     const isScrolled = ref(false);
@@ -16,6 +52,19 @@ export default defineComponent({
     };
 
     const authStore = useAuthStore();
+    
+    // Fetch header data
+    const fetchHeaderData = async () => {
+      try {
+        const response = await headerApi.getHeader();
+        if (response.data) {
+          collections.value = response.data.collections || [];
+          audiences.value = response.data.audiences || [];
+        }
+      } catch (error) {
+        console.error('Failed to fetch header data:', error);
+      }
+    };
 
     onMounted(() => {
       window.addEventListener('scroll', handleScroll);
@@ -69,6 +118,7 @@ export default defineComponent({
     onMounted(() => {
       window.addEventListener('scroll', handleScroll);
       document.addEventListener('click', handleDocumentClick);
+      fetchHeaderData();
     });
     onUnmounted(() => {
       window.removeEventListener('scroll', handleScroll);
@@ -91,6 +141,9 @@ export default defineComponent({
       toggleProductMenu,
       // expose auth status
       isAuthenticated: computed(() => authStore.isAuthenticated),
+      // header data
+      collections,
+      audiences,
     };
   }
 });

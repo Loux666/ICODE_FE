@@ -123,56 +123,56 @@ export default {
 .footer {
   background: #a70d29;
   color: #fff;
-  padding: 60px 0 40px;
-  margin-top: 80px;
+  padding: 45px 0 30px;
+  margin-top: 60px;
 }
 
 .footer-container {
-  max-width: 1200px;
+  max-width: 900px;
   margin: 0 auto;
-  padding: 0 40px;
+  padding: 0 30px;
 }
 
 .footer-row-1 {
   display: grid;
   grid-template-columns: 1fr 2fr;
-  gap: 80px;
-  padding-bottom: 50px;
+  gap: 60px;
+  padding-bottom: 38px;
   border-bottom: 1px solid rgba(255, 255, 255, 0.3);
-  margin-bottom: 40px;
+  margin-bottom: 30px;
 }
 
 .footer-row-2 {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 60px;
+  gap: 45px;
 }
 
 .footer-section {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 15px;
 }
 
 .contact-section {
-  gap: 24px;
+  gap: 18px;
 }
 
 .newsletter-section {
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  gap: 18px;
 }
 
 .newsletter-right {
   display: grid;
   grid-template-columns: 2fr 1fr;
-  gap: 24px;
+  gap: 18px;
   align-items: start;
 }
 
 .footer-title {
-  font-size: 16px;
+  font-size: 12px;
   font-weight: 800;
   margin-bottom: 0;
   letter-spacing: 1px;
@@ -181,37 +181,37 @@ export default {
 
 .contact-item {
   display: flex;
-  gap: 16px;
+  gap: 12px;
   align-items: flex-start;
-  font-size: 14px;
+  font-size: 10.5px;
 }
 
 .contact-icon {
-  font-size: 24px;
+  font-size: 18px;
   line-height: 1;
 }
 
 .contact-label {
   font-weight: 700;
-  font-size: 14px;
-  margin-bottom: 4px;
+  font-size: 10.5px;
+  margin-bottom: 3px;
 }
 
 .contact-value {
-  font-size: 14px;
+  font-size: 10.5px;
   opacity: 0.9;
   line-height: 1.5;
 }
 
 .social-links {
   display: flex;
-  gap: 15px;
-  margin-top: 8px;
+  gap: 11px;
+  margin-top: 6px;
 }
 
 .social-icon {
-  width: 42px;
-  height: 42px;
+  width: 31px;
+  height: 31px;
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -220,7 +220,7 @@ export default {
   text-decoration: none;
   font-weight: bold;
   transition: transform 0.3s, opacity 0.3s;
-  font-size: 20px;
+  font-size: 15px;
 }
 
 .social-icon.facebook {
@@ -251,7 +251,7 @@ export default {
   list-style: none;
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 9px;
   margin: 0;
   padding: 0;
 }
@@ -259,7 +259,7 @@ export default {
 .footer-links a {
   color: #fff;
   text-decoration: none;
-  font-size: 14px;
+  font-size: 10.5px;
   transition: opacity 0.3s;
   opacity: 0.9;
   line-height: 1.6;
@@ -271,32 +271,32 @@ export default {
 
 .newsletter-form {
   display: flex;
-  gap: 24px;
+  gap: 18px;
 }
 
 .newsletter-input {
   flex: 1;
-  padding: 14px 18px;
+  padding: 10.5px 13.5px;
   border: none;
-  border-radius: 6px;
-  font-size: 14px;
+  border-radius: 4.5px;
+  font-size: 10.5px;
   outline: none;
   font-family: inherit;
-  width: 600px;
+  width: 450px;
 }
 
 .newsletter-btn {
-  padding: 14px 32px;
+  padding: 10.5px 24px;
   background: #000;
   color: #fff;
   border: none;
-  border-radius: 6px;
-  font-size: 14px;
+  border-radius: 4.5px;
+  font-size: 10.5px;
   font-weight: 700;
   cursor: pointer;
   transition: background 0.3s, transform 0.3s;
   white-space: nowrap;
-  width: 162px;
+  width: 121px;
 }
 
 .newsletter-btn:hover {
@@ -306,29 +306,29 @@ export default {
 
 .footer-box {
   background: rgba(0, 0, 0, 0.2);
-  padding: 22px;
-  border-radius: 8px;
-  width: 600px;
+  padding: 16.5px;
+  border-radius: 6px;
+  width: 450px;
 
 }
 
 .box-title {
-  font-size: 15px;
+  font-size: 11px;
   font-weight: 800;
-  margin-bottom: 12px;
+  margin-bottom: 9px;
   letter-spacing: 0.5px;
 }
 
 .box-text {
-  font-size: 13px;
+  font-size: 9.75px;
   line-height: 1.7;
   opacity: 0.9;
-  margin-bottom: 12px;
+  margin-bottom: 9px;
 }
 
 .box-link {
   color: #fff;
-  font-size: 13px;
+  font-size: 9.75px;
   text-decoration: none;
   font-weight: 700;
   transition: opacity 0.3s;
@@ -346,16 +346,237 @@ export default {
 }
 
 .qr-placeholder {
-  width: 162px;
-  height: 172px;
+  width: 121px;
+  height: 129px;
   background: #fff;
-  border-radius: 8px;
+  border-radius: 6px;
   display: flex;
   align-items: center;
   justify-content: center;
   color: #a70d29;
   font-weight: 800;
-  font-size: 20px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  font-size: 15px;
+  box-shadow: 0 3px 9px rgba(0, 0, 0, 0.2);
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+  .footer-container {
+    padding: 0 30px;
+  }
+
+  .footer-row-1 {
+    gap: 60px;
+  }
+
+  .newsletter-right {
+    gap: 20px;
+  }
+}
+
+@media (max-width: 992px) {
+  .footer {
+    padding: 50px 0 35px;
+    margin-top: 60px;
+  }
+
+  .footer-row-1 {
+    grid-template-columns: 1fr;
+    gap: 40px;
+    padding-bottom: 40px;
+    margin-bottom: 35px;
+  }
+
+  .footer-row-2 {
+    grid-template-columns: 1fr;
+    gap: 35px;
+  }
+
+  .footer-box {
+    width: 100%;
+  }
+
+  .newsletter-form {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .newsletter-input {
+    width: 100%;
+  }
+
+  .newsletter-btn {
+    width: 100%;
+  }
+
+  .newsletter-right {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .qr-code {
+    justify-content: flex-start;
+  }
+}
+
+@media (max-width: 768px) {
+  .footer {
+    padding: 40px 0 30px;
+    margin-top: 50px;
+  }
+
+  .footer-container {
+    padding: 0 20px;
+  }
+
+  .footer-row-1 {
+    padding-bottom: 35px;
+    margin-bottom: 30px;
+  }
+
+  .footer-row-2 {
+    gap: 30px;
+  }
+
+  .footer-title {
+    font-size: 14px;
+  }
+
+  .contact-icon {
+    font-size: 20px;
+  }
+
+  .contact-label,
+  .contact-value,
+  .footer-links a {
+    font-size: 13px;
+  }
+
+  .social-icon {
+    width: 38px;
+    height: 38px;
+    font-size: 18px;
+  }
+
+  .box-title {
+    font-size: 14px;
+  }
+
+  .box-text,
+  .box-link {
+    font-size: 12px;
+  }
+
+  .newsletter-input {
+    padding: 12px 16px;
+    font-size: 13px;
+  }
+
+  .newsletter-btn {
+    padding: 12px 28px;
+    font-size: 13px;
+  }
+
+  .qr-placeholder {
+    width: 140px;
+    height: 140px;
+  }
+}
+
+@media (max-width: 480px) {
+  .footer {
+    padding: 30px 0 25px;
+    margin-top: 40px;
+  }
+
+  .footer-container {
+    padding: 0 15px;
+  }
+
+  .footer-row-1 {
+    gap: 30px;
+    padding-bottom: 30px;
+    margin-bottom: 25px;
+  }
+
+  .footer-row-2 {
+    gap: 25px;
+  }
+
+  .footer-title {
+    font-size: 13px;
+    margin-bottom: 15px;
+  }
+
+  .contact-section {
+    gap: 20px;
+  }
+
+  .contact-item {
+    gap: 12px;
+  }
+
+  .contact-icon {
+    font-size: 18px;
+  }
+
+  .contact-label,
+  .contact-value {
+    font-size: 12px;
+  }
+
+  .social-links {
+    gap: 12px;
+    margin-top: 5px;
+  }
+
+  .social-icon {
+    width: 36px;
+    height: 36px;
+    font-size: 16px;
+  }
+
+  .footer-box {
+    padding: 18px;
+  }
+
+  .box-title {
+    font-size: 13px;
+    margin-bottom: 10px;
+  }
+
+  .box-text {
+    font-size: 11px;
+    line-height: 1.6;
+    margin-bottom: 10px;
+  }
+
+  .box-link {
+    font-size: 11px;
+  }
+
+  .newsletter-input {
+    padding: 11px 14px;
+    font-size: 12px;
+  }
+
+  .newsletter-btn {
+    padding: 11px 24px;
+    font-size: 12px;
+  }
+
+  .qr-placeholder {
+    width: 120px;
+    height: 120px;
+    font-size: 16px;
+  }
+
+  .footer-links {
+    gap: 10px;
+  }
+
+  .footer-links a {
+    font-size: 12px;
+  }
 }
 </style>
