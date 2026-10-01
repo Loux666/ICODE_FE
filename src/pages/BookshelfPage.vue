@@ -15,8 +15,7 @@ import {
   Plus,
   Sparkles,
   Clock,
-  CheckCircle2,
-  Calendar
+  CheckCircle2
 } from 'lucide-vue-next';
 
 const store = useBookshelfStore();
