@@ -1,67 +1,70 @@
 import axios from 'axios';
+import type {
+  ApiResponse,
+  OpenLibraryBook,
+  WorkDetails,
+  BookshelfItem,
+  BookshelfStats,
+  AddBookPayload,
+  UpdateBookPayload,
+  ReadingStatus
+} from '../types/book';
+
+const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:3000/api';
 
 const apiClient = axios.create({
-  baseURL: import.meta.env.VITE_API_URL || 'http://localhost:8000/api',
-  timeout: 10000,
+  baseURL: API_BASE_URL,
   headers: {
     'Content-Type': 'application/json',
   },
 });
 
-// Request interceptor - Thêm token vào mỗi request
-apiClient.interceptors.request.use(
-  (config) => {
-    const token = localStorage.getItem('token');
-    if (token) {
-      config.headers.Authorization = `Bearer ${token}`;
-    }
-    return config;
+export const bookApi = {
+  // Tìm kiếm sách từ Open Library (qua Backend Proxy)
+  async search(query: string, page = 1, limit = 20): Promise<{ books: OpenLibraryBook[]; total: number; page: number; totalPages: number }> {
+    const res = await apiClient.get<ApiResponse<{ books: OpenLibraryBook[]; total: number; page: number; totalPages: number }>>('/books/search', {
+      params: { q: query, page, limit }
+    });
+    return res.data.data;
   },
-  (error) => {
-    return Promise.reject(error);
-  }
-);
 
-// Response interceptor - Xử lý lỗi tập trung
-apiClient.interceptors.response.use(
-  (response) => {
-    return response;
+  // Xem chi tiết tác phẩm (có Fallback & Auto-Sync)
+  async getWorkDetails(workId: string): Promise<WorkDetails> {
+    const res = await apiClient.get<ApiResponse<WorkDetails>>(`/books/works/${workId}`);
+    return res.data.data;
   },
-  (error) => {
-    if (error.response) {
-      // Server trả về lỗi
-      switch (error.response.status) {
-        case 401:
-          // Unauthorized - xóa token và redirect về login
-          localStorage.removeItem('token');
-          console.error('Unauthorized - Please login again');
-          window.location.href = '/login'; 
-          break;
-        case 403:
-          console.error('Forbidden - You do not have permission');
-          break;
-        case 404:
-          console.error('Resource not found');
-          break;
-        case 500:
-          console.error('Server error');
-          break;
-        default:
-          console.error('Error:', error.response.data?.message || error.message);
-      }
-    } else if (error.request) {
-      // Request được gửi nhưng không nhận được response
-      console.error('Network error - Cannot connect to server');
-    } else {
-      console.error('Error:', error.message);
-    }
-    return Promise.reject(error);
-  }
-);
-
-// API endpoints
-export const headerApi = {
-  getHeader: () => apiClient.get('/header'),
 };
 
-export default apiClient;
+export const bookshelfApi = {
+  // Lấy danh sách Tủ sách cá nhân
+  async getAll(status?: ReadingStatus, search?: string): Promise<BookshelfItem[]> {
+    const res = await apiClient.get<ApiResponse<BookshelfItem[]>>('/bookshelf', {
+      params: { status, search }
+    });
+    return res.data.data;
+  },
+
+  // Lấy thống kê nhanh
+  async getStats(): Promise<BookshelfStats> {
+    const res = await apiClient.get<ApiResponse<BookshelfStats>>('/bookshelf/stats');
+    return res.data.data;
+  },
+
+  // Thêm sách vào tủ (chống trùng 409)
+  async add(payload: AddBookPayload): Promise<BookshelfItem> {
+    const res = await apiClient.post<ApiResponse<BookshelfItem>>('/bookshelf', payload);
+    return res.data.data;
+  },
+
+  // Cập nhật tiến độ / trạng thái / đánh giá
+  async update(id: number, payload: UpdateBookPayload): Promise<BookshelfItem> {
+    const res = await apiClient.put<ApiResponse<BookshelfItem>>(`/bookshelf/${id}`, payload);
+    return res.data.data;
+  },
+
+  // Xóa sách khỏi tủ
+  async delete(id: number): Promise<{ message: string }> {
+    const res = await apiClient.delete<ApiResponse<{ message: string }>>(`/bookshelf/${id}`);
+    return res.data.data;
+  },
+};
