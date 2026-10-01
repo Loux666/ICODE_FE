@@ -1,21 +1,26 @@
 <script setup lang="ts">
-import { computed } from 'vue';
-import { useRoute } from 'vue-router';
-
-
-const route = useRoute();
-
-// Kiểm tra xem route hiện tại có config layout không?
-// Nếu có thì dùng, nếu không (null) thì dùng thẻ div bình thường
-const layout = computed(() => route?.meta?.layout || 'div');
+import Navbar from './components/Navbar.vue';
+import Toast from './components/Toast.vue';
 </script>
 
 <template>
-  <component :is="layout">
-    <router-view />
-  </component>
+  <div class="app-layout">
+    <Navbar />
+    <main class="main-content">
+      <router-view />
+    </main>
+    <Toast />
+  </div>
 </template>
 
+<style scoped>
+.app-layout {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
 
-
-
+.main-content {
+  flex: 1;
+}
+</style>
